@@ -1,5 +1,11 @@
+import React from "react";
+
 function App() {
-  return <div></div>;
+  return (
+    <div>
+      <h2>Movie Database</h2>
+    </div>
+  );
 }
 
 export default App;
