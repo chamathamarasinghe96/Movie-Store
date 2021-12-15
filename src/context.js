@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
         setMovies(data.Search);
         setError({ show: false, msg: "" });
       } else {
-        setError({ show: false, msg: data.Error });
+        setError({ show: true, msg: data.Error });
       }
       setIsLoading(false);
     } catch (error) {
