@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useGlobalContext, API_ENDPOINT } from "./context";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
+import useFetch from "./useFetch";
 
 const SingleMovie = () => {
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState({ show: false, msg: "" });
-  const [movie, setMovie] = useState({});
 
-  const fetchMovie = async (url) => {
-    const resp = await fetch(url);
-    const data = await resp.json();
-    if (data.Response === "True") {
-      setMovie(data);
-      setIsLoading(false);
-    } else {
-      setError({ show: true, msg: data.Error });
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchMovie(`${API_ENDPOINT}&i=${id}`);
-  }, [id]);
+  const { isLoading, error, data: movie } = useFetch(`&i=${id}`);
 
   if (isLoading) {
     return <div className="loading"></div>;
